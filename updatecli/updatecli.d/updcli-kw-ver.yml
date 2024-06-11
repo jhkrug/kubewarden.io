@@ -1,9 +1,9 @@
-name: 'docs: update Kubewarden version on frontpage of kubewarden.io
+name: 'docs: update Kubewarden version on frontpage of kubewarden.io'
 pipelineid: kubewarden-controller/latest
 
 actions:
   default:
-    title: 'docs: update Kubewarden version to {{ source "kubewarden-controller-version" }}'
+    title: 'docs: update Kubewarden version to {{ source "kwc-version" }}'
     kind: github/pullrequest
     scmid: default
     spec:
@@ -25,8 +25,8 @@ scms:
       branch: updcli-kw-ver
 
 sources:
-  kubewarden-controller-version:
-    name: Get latest Kubewarden version
+  kwc-version:
+    name: Get the latest Kubewarden controller version
     kind: githubrelease
     spec:
       owner: kubewarden
@@ -42,12 +42,14 @@ sources:
         pattern: ">0.1"
 
 targets:
-  kw-latest-version-number:
-    name: 'docs: update Kubewarden with version {{ source "kubewarden-controller-version" }}'
+  kwc-update-vno:
+    name: 'docs: update Kubewarden with version {{ source "kwc-version" }}'
     kind: file
     spec:
       file: content/_index.html
-      matchpattern: '<a href="get-started">(.*)</a>'
-      replacepattern: '<a href="#get-started">{{ source "kubewarden-controller-version" }}</a>'
-    scmid: default
-    sourceid: kubewarden
+      matchpattern: '<a href="#get-started">(.*)</a>'
+      replacepattern: '<a href="#get-started">{{ source "kwc-version" }}</a>'
+    sourceid: kwc-version
+
+
+

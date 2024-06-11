@@ -38,7 +38,7 @@ jobs:
         uses: updatecli/updatecli-action@v2
 
       - name: Run Updatecli in enforce mode
-        run: "updatecli compose apply --experimental"
+        run: "updatecli compose apply"
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
