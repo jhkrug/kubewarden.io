@@ -8,4 +8,4 @@
 policies:
   - name: Kubewarden specific policies
     config: 
-      - updatecli/updatecli.d
+      - updatecli/updatecli.d/

@@ -3,7 +3,7 @@ pipelineid: kubewarden-controller/latest
 
 actions:
   default:
-    title: 'docs: update Kubewarden version to {{ source "kubewarden-controller" }}'
+    title: 'docs: update Kubewarden version to {{ source "kubewarden-controller-version" }}'
     kind: github/pullrequest
     scmid: default
     spec:
@@ -22,10 +22,10 @@ scms:
       repository: kubewarden.io
       token: '{{ requiredEnv "GITHUB_TOKEN" }}'
       username: '{{ requiredEnv "GITHUB_ACTOR" }}'
-      branch: main
+      branch: updcli-kw-ver
 
 sources:
-  kubewarden-controller:
+  kubewarden-controller-version:
     name: Get latest Kubewarden version
     kind: githubrelease
     spec:
@@ -42,12 +42,12 @@ sources:
         pattern: ">0.1"
 
 targets:
-  download-url:
-    name: 'docs: update Kubewarden with version {{ source "kubewarden-controller" }}'
+  kw-latest-version-number:
+    name: 'docs: update Kubewarden with version {{ source "kubewarden-controller-version" }}'
     kind: file
     spec:
       file: content/_index.html
       matchpattern: '<a href="get-started">(.*)</a>'
-      replacepattern: '<a href="#get-started">{{ source "kubewarden-controller" }}</a>'
+      replacepattern: '<a href="#get-started">{{ source "kubewarden-controller-version" }}</a>'
     scmid: default
     sourceid: kubewarden

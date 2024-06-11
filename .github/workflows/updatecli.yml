@@ -16,7 +16,7 @@ permissions:
 jobs:
   updatecli:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/updcli-kw-ver'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
