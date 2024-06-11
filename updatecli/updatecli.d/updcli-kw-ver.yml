@@ -18,7 +18,7 @@ scms:
     spec:
       user: kubewarden-bot
       email: bot@kubewarden.io
-      owner: kubewarden
+      owner: jhkrug
       repository: kubewarden.io
       token: '{{ requiredEnv "GITHUB_TOKEN" }}'
       username: '{{ requiredEnv "GITHUB_ACTOR" }}'
