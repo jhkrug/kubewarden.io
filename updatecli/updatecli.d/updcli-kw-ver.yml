@@ -16,13 +16,16 @@ scms:
   default:
     kind: github
     spec:
-      user: kubewarden-bot
-      email: bot@kubewarden.io
+      user: jhkrug
+      email: john.krug@suse.com
       owner: jhkrug
       repository: kubewarden.io
       token: '{{ requiredEnv "GITHUB_TOKEN" }}'
       username: '{{ requiredEnv "GITHUB_ACTOR" }}'
       branch: updcli-kw-ver
+      commitmessage:
+        type: "chore"
+        title: 'docs: update Kubewarden version to {{ source "kwc-version" }} on kubewarden.io front page'
 
 sources:
   kwc-version:
@@ -35,11 +38,11 @@ sources:
       username: '{{ requiredEnv "GITHUB_ACTOR" }}'
       versionfilter:
         kind: semver
-        # We want to ignore pre-release version
-        # According the library documentation used by updatecli
-        # https://github.com/Masterminds/semver#working-with-prerelease-versions
-        # the following rule, should do the trick
         pattern: ">0.1"
+    transformers:
+      - trimprefix: "v"
+      - trimsuffix: ".0"
+
 
 targets:
   kwc-update-vno:
