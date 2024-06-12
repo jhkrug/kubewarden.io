@@ -3,7 +3,7 @@ pipelineid: kubewarden-controller/latest
 
 actions:
   default:
-    title: 'docs: update Kubewarden version to {{ source "kwc-version" }}'
+    title: 'updatecli: docs: update Kubewarden version to {{ source "kwc-version" }} on front page of kubewarden.io'
     kind: github/pullrequest
     scmid: default
     spec:
@@ -48,11 +48,13 @@ targets:
   kwc-update-vno:
     name: 'docs: update Kubewarden with version {{ source "kwc-version" }}'
     kind: file
+    sourceid: kwc-version
     spec:
-      file: content/_index.html
+      files:
+        - content/_index.html
       matchpattern: '<a href="#get-started">(.*)</a>'
       replacepattern: '<a href="#get-started">{{ source "kwc-version" }}</a>'
-    sourceid: kwc-version
+    scmid: default
 
 
 
